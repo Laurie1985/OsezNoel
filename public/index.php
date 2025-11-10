@@ -1,5 +1,10 @@
 <?php
-echo "<h1>Bienvenue sur Osez Noël ! 🎄</h1>";
-echo "<p>Docker fonctionne parfaitement !</p>";
 
-phpinfo();
+//Charger la configuration de l'application
+require_once __DIR__ . '/../src/Config/bootstrap.php';
+
+use App\Lib\Router;
+
+//Création et dispatch du routeur
+$router = new Router();
+$router->dispatch();
