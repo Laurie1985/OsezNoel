@@ -5,6 +5,14 @@ use App\Model\User;
 
 class AuthController extends BaseController
 {
+
+    private User $userModel;
+
+    public function __construct()
+    {
+        parent::__construct(); // ← Important ! Appelle le constructeur de BaseController
+        $this->userModel = new User();
+    }
     /**
      * Affiche le formulaire de connexion
      */
@@ -52,7 +60,7 @@ class AuthController extends BaseController
 
         // Vérification des identifiants
         try {
-            $user = $this->User->findByEmail($email);
+            $user = $this->userModel->findByEmail($email);
 
             // Vérifier que l'utilisateur existe ET que le mot de passe est correct
             if (! $user || ! password_verify($password, $user['password_hash'])) {
