@@ -12,7 +12,7 @@ Config::load();
 define('ROOT_PATH', dirname(__DIR__, 2));
 define('APP_URL', Config::get('APP_URL', 'http://localhost:8080'));
 define('PUBLIC_PATH', ROOT_PATH . '/public');
-define('VIEW_PATH', ROOT_PATH . '/View');
+define('VIEW_PATH', ROOT_PATH . '/Views');
 
 // Configuration de l'environnement
 $appEnv = Config::get('APP_ENV', 'dev');
