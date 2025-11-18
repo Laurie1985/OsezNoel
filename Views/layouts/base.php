@@ -43,20 +43,19 @@
                     </ul>
                     <div class="align-items-center flex-nowrap">
                         <?php if (isset($_SESSION['user_id'])): ?>
-                            <?php if ($_SESSION['is_admin'] === true): ?>
-                            <a href="/admin/dashboard" class="btn-fond-clair me-5">Tableau de bord</a>
-                            <form method="POST" action="/logout" class="d-inline">
-                                <button class="btn-fond-clair" type="submit">Déconnexion</button>
-                            </form>
+                            <?php if (isset($_SESSION['user']['is_admin']) && $_SESSION['user']['is_admin']): ?>
+                                <a href="/admin/dashboard" class="btn-fond-clair me-5">Tableau de bord</a>
+                                <form method="POST" action="/logout" class="d-inline">
+                                    <button class="btn-fond-clair me-5" type="submit">Déconnexion</button>
+                                </form>
                             <?php else: ?>
-	                        <a href="/dashboard" class="btn-fond-clair me-5">Mon compte</a>
-	                        <form method="POST" action="/logout" class="d-inline">
-	                        <button class="btn-fond-clair" type="submit">Déconnexion</button>
-	                        </form>
-	                        <?php endif; ?>
+                                <a href="/dashboard" class="btn-fond-clair me-5">Mon compte</a>
+                                <form method="POST" action="/logout" class="d-inline">
+                                    <button class="btn-fond-clair me-5" type="submit">Déconnexion</button>
+                                </form>
+                            <?php endif; ?>
                         <?php else: ?>
-                            <a href="/login" class="btn-fond-clair me-5">Connexion</a>
-                            <a href="/register" class="btn-fond-clair">Inscription</a>
+                            <a href="/login" class="btn-fond-clair me-5">Se connecter</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -68,11 +67,15 @@
 
     <main>
         <!-- START MAIN -->
-        <?php if (isset($_SESSION['error'])): ?>
-        <div class="alert alert-danger"><?php echo $_SESSION['error'];unset($_SESSION['error']); ?></div>
-            <?php endif; ?>
-            <?php if (isset($_SESSION['success'])): ?>
-        <div class="alert alert-success"><?php echo $_SESSION['success'];unset($_SESSION['success']); ?></div>
+        <?php if (! empty($flashMessages)): ?>
+            <div class="container mt-3">
+                <?php foreach ($flashMessages as $flash): ?>
+                    <div class="alert alert-<?php echo $flash['type'] === 'error' ? 'danger' : $flash['type'] ?> alert-dismissible fade show" role="alert">
+                        <?php echo $flash['message'] ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         <?php endif; ?>
 
         <?php echo $content ?? '' ?>

@@ -14,7 +14,7 @@ class AuthController extends BaseController
         $this->userModel = new User();
     }
     /**
-     * Affiche le formulaire de connexion
+     * Affiche le formulaire de connexion et d'inscription
      */
     public function showLoginForm(): void
     {
@@ -93,25 +93,6 @@ class AuthController extends BaseController
             $this->flash('error', 'Erreur lors de la connexion. Veuillez réessayer plus tard.');
             $this->redirectBack();
         }
-    }
-
-    /**
-     * Affiche le formulaire d'inscription
-     */
-    public function showRegisterForm(): void
-    {
-        // Si déjà connecté, redirige vers dashboard
-        if ($this->isAuthenticated()) {
-            $this->redirect('/calendars');
-            return;
-        }
-
-        $this->render('auth/register', [
-            'title'      => 'Osez Noël - Inscription',
-            'cssFile'    => 'auth',
-            'jsFile'     => 'auth',
-            'csrf_token' => $this->generateCsrfToken(),
-        ]);
     }
 
     /**

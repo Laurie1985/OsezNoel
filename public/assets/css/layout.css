@@ -22,10 +22,14 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
 main {
+    flex: 1;
+    /*Pour que le main prenne tout l'espace disponible*/
     background-image: url('/assets/images/themes/fond-app.jpeg');
     background-size: cover;
     padding-bottom: 4rem;

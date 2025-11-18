@@ -1,0 +1,58 @@
+.contenu {
+    background-color: rgba(2, 89, 89, 0.82);
+    border-radius: 20px;
+}
+
+.connexion,
+.inscription {
+    width: 50%;
+    padding: 4rem;
+}
+
+.auth-divider {
+    width: 2px;
+    background: var(--bleu-clair);
+    opacity: 0.5;
+    align-self: stretch;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-family-text);
+    color: var(--gris);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-family-text);
+    font-size: 1rem;
+    background-color: var(--gris);
+    color: var(--vert-fonce);
+}
+
+.form-group input:focus {
+    outline: 2px solid var(--dore);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-family-text);
+    color: var(--bleu-clair);
+    font-size: 1rem;
+}
+
+.form-connect {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
