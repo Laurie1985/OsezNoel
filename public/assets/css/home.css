@@ -1,0 +1,104 @@
+.contenu {
+    background-color: rgba(2, 89, 89, 0.82);
+    border-radius: 20px;
+}
+
+.text-accueil {
+    text-align: center;
+    color: var(--gris);
+}
+
+.section-titre {
+    color: var(--bleu-clair);
+    padding-bottom: 1rem;
+}
+
+.exemples {
+    justify-content: center;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.bloc-cases1 {
+    background-image: url('/assets/images/themes/noel-nature.jpeg');
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 30%;
+    padding: 2rem;
+}
+
+.bloc-cases2 {
+    background-image: url('/assets/images/themes/bleu-nuit.jpeg');
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 30%;
+    padding: 2rem;
+}
+
+.bloc-cases3 {
+    background-image: url('/assets/images/themes/sapin-scintillant.jpeg');
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 30%;
+    padding: 2rem;
+}
+
+.case-clair {
+    background-color: var(--bleu-clair);
+    width: 2.5rem;
+    height: 2.5rem;
+
+}
+
+.case-foncee {
+    background-color: var(--dore);
+    width: 2.5rem;
+    height: 2.5rem;
+
+}
+
+.jour1 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bleu-fonce);
+    /*text-align: center;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.jour2 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gris);
+    /*text-align: center;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .exemples {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bloc-cases1,
+    .bloc-cases2,
+    .bloc-cases3 {
+        max-width: 70%;
+    }
+}

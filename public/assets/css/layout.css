@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    /*Polices*/
+    --font-family-title: 'Montez', cursive;
+    --font-family-text: 'Indie Flower', cursive;
+
+    /*Couleurs*/
+    --vert: #027368;
+    --vert-fonce: #025959;
+    --bleu-clair: #C1D4D9;
+    --bleu-fonce: #0E5673;
+    --gris: #F3F5F5;
+    --dore: #A68549;
+    --dore-clair: #FFD17D;
+    --rose: #D92353;
+}
+
+body {
+    min-height: 100vh;
+}
+
+main {
+    background-image: url('/assets/images/themes/fond-app.jpeg');
+    background-size: cover;
+    padding-bottom: 4rem;
+}
+
+h1 {
+    font-family: var(--font-family-title);
+    font-size: 3rem;
+    color: #0E5673;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+h2 {
+    font-family: var(--font-family-title);
+    font-size: 2.25rem;
+    color: #FFD17D;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+h3 {
+    font-family: var(--font-family-title);
+    font-size: 2rem;
+}
+
+p {
+    font-family: var(--font-family-text);
+    font-size: 1.25rem;
+    color: var(--vert-fonce);
+    letter-spacing: 0.1rem;
+
+}
+
+.btn-fond-clair {
+    font-family: var(--font-family-text);
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    background-color: var(--vert-fonce);
+    color: var(--gris);
+    padding: 0.5rem 2rem;
+    border: none;
+    text-decoration: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    /*transition: background-color 0.3s ease;*/
+}
+
+.btn-fond-clair:hover {
+    background-color: var(--dore);
+}
+
+.btn-fond-fonce {
+    font-family: var(--font-family-text);
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    /*font-weight: 600;*/
+    background-color: var(--bleu-clair);
+    color: var(--bleu-fonce);
+    padding: 0.5rem 2rem;
+    border: none;
+    text-decoration: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.btn-fond-fonce:hover {
+    background-color: var(--bleu-fonce);
+    color: var(--bleu-clair);
+}
+
+.btn-danger {
+    font-family: var(--font-family-text);
+    font-size: 1rem;
+    background-color: var(--rose);
+    color: var(--gris);
+    padding: 0.5rem 2rem;
+    border: none;
+    text-decoration: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.btn-danger:hover {
+    background-color: rgba(217, 35, 83, 0.7);
+}
+
+header {
+    background-color: var(--gris);
+}
+
+.logo {
+    width: 33%;
+    margin-left: 2rem;
+}
+
+.logo img {
+    width: 20%;
+}
+
+.nav-link {
+    font-family: var(--font-family-title);
+    font-size: 1.75rem;
+    color: var(--vert-fonce);
+    margin-right: 3rem;
+}
+
+.nav-link:hover {
+    color: var(--dore);
+}
+
+.modal-title {
+    color: var(--vert-fonce);
+    padding: 0;
+}
+
+.modal-body p {
+    font-family: var(--font-family-text);
+    font-size: 1rem;
+    color: var(--vert-fonce);
+}
+
+.modal-body h3 {
+    color: var(--dore);
+}
+
+.mise-a-jour {
+    font-size: 0.5rem;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.footer-links a {
+    font-family: var(--font-family-title);
+    font-size: 1.5rem;
+    color: var(--vert-fonce);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--dore);
+}
+
+.footer-copy {
+    color: var(--vert-fonce);
+}
+
+.footer-links li {
+    padding-right: 4rem;
+    padding-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 50%;
+        margin-left: 1rem;
+    }
+
+    .logo img {
+        width: 40%;
+    }
+
+    .nav-link {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .footer-links a {
+        font-size: 1.25rem;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+}
