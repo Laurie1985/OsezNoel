@@ -2,6 +2,7 @@
 namespace App\Config;
 
 use MongoDB\Client;
+use MongoDB\Collection;
 use MongoDB\Database as MongoDatabase;
 
 class MongoDB
@@ -33,5 +34,17 @@ class MongoDB
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Retourne une collection MongoDB
+     *
+     * @param string $collectionName Nom de la collection
+     * @return Collection
+     */
+    public static function getCollection(string $collectionName): Collection
+    {
+        $db = self::getConnection();
+        return $db->selectCollection($collectionName);
     }
 }
