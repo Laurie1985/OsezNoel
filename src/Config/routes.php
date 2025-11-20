@@ -14,9 +14,6 @@ use App\Controller\HomeController;
 $r->get('/', [HomeController::class, 'index']);
 $r->get('/home', [HomeController::class, 'index']);
 
-// Route de test
-$r->get('/test', [HomeController::class, 'test']);
-
 // Afficher le formulaire login/register
 $r->get('/login', [AuthController::class, 'showLoginForm']);
 
