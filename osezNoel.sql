@@ -119,7 +119,7 @@ VALUES (
         'Michel',
         'Admin',
         'michel.admin@oseznoel.fr',
-        '$2y$10$kX8Zm5qvR6YqZvXjN8Y8qOGhF2xJ4mZp3K9wL5tR6yQ8xN7mZ5pQC',
+        '$2y$12$lwt.kOtYahaKUotvqJC0Z.ul192if7SM5etFXurcOKoERg2jc6yVq',
         TRUE
     );
 
@@ -134,11 +134,11 @@ VALUES (
         'Laurie',
         'Dupont',
         'laurie.dupont@mail.com',
-        '$2y$10$vB3nM8pL5qR7tY9wZ2xK6uL4mN8pQ9rS5tV7wX9yZ1aC3dE5fG7hI'
+        '$2y$12$FnGq9L2fvoacTK/KZtVI5eYsoFrFLrYtIz0GSBbKNfO25mC/0yNEm'
     ),
     (
         'Hugo',
         'Martin',
         'hugo.martin@mail.com',
-        '$2y$10$vB3nM8pL5qR7tY9wZ2xK6uL4mN8pQ9rS5tV7wX9yZ1aC3dE5fG7hI'
+        '$2y$12$FnGq9L2fvoacTK/KZtVI5eYsoFrFLrYtIz0GSBbKNfO25mC/0yNEm'
     );

@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password-confirm">Confirmer mon mot de passe</label>
-                        <input type="password" id="password-confirm" name="password-confirm" required>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
                     </div>
                     <div class="form-connect">
                         <button type="submit" class="btn-fond-fonce">Je m'inscris</button>

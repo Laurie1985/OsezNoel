@@ -10,7 +10,7 @@ class AuthController extends BaseController
 
     public function __construct()
     {
-        parent::__construct(); // ← Important ! Appelle le constructeur de BaseController
+        parent::__construct();
         $this->userModel = new User();
     }
     /**
@@ -38,17 +38,19 @@ class AuthController extends BaseController
     public function login(): void
     {
         if (! $this->requireCsrfToken()) {
+            $this->flash('error', 'Requête invalide. Veuillez réessayer.');
             $this->redirect('/login');
             return;
         }
 
         // Vérifie que c'est bien une requête POST
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->flash('error', 'Requête invalide.');
             $this->redirect('/login');
             return;
         }
 
-        $email    = $this->sanitize($_POST['login'] ?? '');
+        $email    = $this->sanitize($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
 
         // Validation des champs
@@ -81,6 +83,8 @@ class AuthController extends BaseController
             $_SESSION['user']    = [
                 'user_id'    => $user['user_id'],
                 'email'      => $user['email'],
+                'first_name' => $user['first_name'],
+                'last_name'  => $user['last_name'],
                 'is_admin'   => $user['is_admin'],
                 'created_at' => $user['created_at'],
             ];
@@ -98,13 +102,15 @@ class AuthController extends BaseController
     /**
      * Inscription
      */
-    public function register()
+    public function register(): void
     {
         if (! $this->requireCsrfToken()) {
-            $this->redirectBack();
+            $this->flash('error', 'Requête invalide. Veuillez réessayer.');
+            $this->redirect('/login');
             return;
         }
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->flash('error', 'Requête invalide.');
             $this->redirect('/register');
             return;
         }
@@ -150,7 +156,7 @@ class AuthController extends BaseController
             foreach ($errors as $error) {
                 $this->flash('error', $error);
             }
-            $this->redirectBack();
+            $this->redirect('/login');
             return;
         }
 
@@ -159,7 +165,7 @@ class AuthController extends BaseController
             $existingEmail = $this->userModel->findByEmail($email);
             if ($existingEmail !== null) {
                 $this->flash('error', 'Cette adresse email est déjà utilisée');
-                $this->redirectBack();
+                $this->redirect('/login');
                 return;
             }
 
@@ -178,6 +184,8 @@ class AuthController extends BaseController
             $_SESSION['user']    = [
                 'user_id'    => $userId,
                 'email'      => $email,
+                'first_name' => $firstname,
+                'last_name'  => $lastname,
                 'is_admin'   => false,
                 'created_at' => date('Y-m-d H:i:s'),
             ];
@@ -190,7 +198,7 @@ class AuthController extends BaseController
         } catch (\Exception $e) {
             error_log("Erreur inscription: " . $e->getMessage());
             $this->flash('error', 'Erreur lors de la création du compte');
-            $this->redirectBack();
+            $this->redirect('/login');
             return;
         }
 
@@ -201,6 +209,13 @@ class AuthController extends BaseController
      */
     public function logout(): void
     {
+
+        // Vérifier le token CSRF
+        if (! $this->requireCsrfToken()) {
+            $this->flash('error', 'Requête invalide.');
+            $this->redirect('/');
+            return;
+        }
         //vider les variables de session
         $_SESSION = [];
 

@@ -27,7 +27,7 @@ $r->post('/login', [AuthController::class, 'login']);
 $r->post('/register', [AuthController::class, 'register']);
 
 // Déconnexion
-$r->get('/logout', [AuthController::class, 'logout']);
+$r->post('/logout', [AuthController::class, 'logout']);
 
 // Liste des calendriers
 $r->get('/calendars', [CalendarController::class, 'index']);

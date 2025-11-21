@@ -46,12 +46,14 @@
                             <?php if (isset($_SESSION['user']['is_admin']) && $_SESSION['user']['is_admin']): ?>
                                 <a href="/admin/dashboard" class="btn-fond-clair me-5">Tableau de bord</a>
                                 <form method="POST" action="/logout" class="d-inline">
-                                    <button class="btn-fond-clair me-5" type="submit">Déconnexion</button>
+                                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? '') ?>">
+                                    <button type="submit" class="btn-link">Déconnexion</button>
                                 </form>
                             <?php else: ?>
                                 <a href="/dashboard" class="btn-fond-clair me-5">Mon compte</a>
                                 <form method="POST" action="/logout" class="d-inline">
-                                    <button class="btn-fond-clair me-5" type="submit">Déconnexion</button>
+                                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? '') ?>">
+                                    <button type="submit" class="btn-link">Déconnexion</button>
                                 </form>
                             <?php endif; ?>
                         <?php else: ?>

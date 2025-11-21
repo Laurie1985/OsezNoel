@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!form) return;
 
     const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('password-confirm');
+    const confirmPassword = document.getElementById('confirm_password');
 
     // Validation à la soumission
     form.addEventListener('submit', function (e) {
