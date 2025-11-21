@@ -104,4 +104,30 @@ class Calendar extends BaseModel
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
+
+    /**
+     * Compter le nombre de calendriers d'un utilisateur
+     */
+    public function countByUserId(int $userId): int
+    {
+        $stmt = $this->db->prepare("
+        SELECT COUNT(*) FROM {$this->table}
+        WHERE user_id = ?
+    ");
+        $stmt->execute([$userId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    /**
+     * Compter le nombre de calendriers utilisant un thème
+     */
+    public function countByThemeId(int $themeId): int
+    {
+        $stmt = $this->db->prepare("
+        SELECT COUNT(*) FROM {$this->table}
+        WHERE theme_id = ?
+    ");
+        $stmt->execute([$themeId]);
+        return (int) $stmt->fetchColumn();
+    }
 }

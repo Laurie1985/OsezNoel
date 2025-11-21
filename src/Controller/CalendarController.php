@@ -93,14 +93,14 @@ class CalendarController extends BaseController
         $this->render("calendar/create", [
             'title'      => 'Osez Noël - Créer un calendrier',
             'cssFile'    => 'calendar',
-            'jsFile'     => 'calendar',
+            'jsFile'     => 'calendar-create',
             'themes'     => $themes, // ← Pour le select des thèmes
             'csrf_token' => $this->generateCsrfToken(),
         ]);
     }
 
     /**
-     * Enregistrer un nouveau calendrier (POST)
+     * Enregistrer un nouveau calendrier avec toutes ses surprises (POST)
      */
     public function store(): void
     {
@@ -137,6 +137,44 @@ class CalendarController extends BaseController
                 'unique_id'   => $this->calendarModel->generateUniqueId(),
                 'share_token' => $this->calendarModel->generateShareToken(),
             ]);
+
+            // Récupérer le calendrier créé pour avoir le unique_id
+            $calendar = $this->calendarModel->findById($calendarId);
+
+            // 2. Créer toutes les surprises
+            // Les surprises sont envoyées sous forme de tableau
+            // $_POST['surprises'] = [
+            //     1 => ['type' => 'text', 'content' => '...'],
+            //     2 => ['type' => 'image', 'content' => '...'],
+            //     ...
+            // ]
+
+            if (! empty($_POST['surprises']) && is_array($_POST['surprises'])) {
+                foreach ($_POST['surprises'] as $day => $surpriseData) {
+                    $day = (int) $day;
+
+                    // Vérifier que le jour est valide
+                    if ($day < 1 || $day > 24) {
+                        continue;
+                    }
+
+                    // Vérifier qu'il y a du contenu
+                    $type    = $this->sanitize($surpriseData['type'] ?? '');
+                    $content = $this->sanitize($surpriseData['content'] ?? '');
+
+                    if (empty($type) || empty($content)) {
+                        continue; // Passer cette surprise
+                    }
+
+                    // Créer la surprise
+                    $this->surpriseModel->create([
+                        'calendar_id' => $calendar['unique_id'],
+                        'day'         => $day,
+                        'type'        => $type,
+                        'content'     => $content,
+                    ]);
+                }
+            }
 
             $this->flash('success', 'Calendrier créé avec succès !');
             $this->redirect('/calendars/' . $calendarId);
