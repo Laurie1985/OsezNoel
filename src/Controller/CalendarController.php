@@ -113,8 +113,9 @@ class CalendarController extends BaseController
         }
 
         // Validation
-        $title   = $this->sanitize($_POST['title'] ?? '');
-        $themeId = (int) ($_POST['theme_id'] ?? 0);
+        $title     = $this->sanitize($_POST['title'] ?? '');
+        $themeId   = (int) ($_POST['theme_id'] ?? 0);
+        $caseStyle = $this->sanitize($_POST['case_style'] ?? 'style1');
 
         if (empty($title)) {
             $this->flash('error', 'Le titre est obligatoire.');
@@ -131,9 +132,10 @@ class CalendarController extends BaseController
         try {
             // Créer le calendrier
             $calendarId = $this->calendarModel->create([
-                'user_id'     => $_SESSION['user_id'], // ← Dans le tableau
+                'user_id'     => $_SESSION['user_id'],
                 'title'       => $title,
                 'theme_id'    => $themeId,
+                'case_style'  => $caseStyle,
                 'unique_id'   => $this->calendarModel->generateUniqueId(),
                 'share_token' => $this->calendarModel->generateShareToken(),
             ]);

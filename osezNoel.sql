@@ -72,7 +72,7 @@ VALUES (
     ),
     (
         'Doré et bois',
-        '/assets/images/themes/dore-bois.jpeg'
+        '/assets/images/themes/dore-et-bois.jpeg'
     ),
     (
         'Houx et pommes de pin',
@@ -142,3 +142,6 @@ VALUES (
         'hugo.martin@mail.com',
         '$2y$12$FnGq9L2fvoacTK/KZtVI5eYsoFrFLrYtIz0GSBbKNfO25mC/0yNEm'
     );
+
+ALTER TABLE calendars
+ADD COLUMN case_style VARCHAR(20) DEFAULT 'style1' AFTER theme_id;

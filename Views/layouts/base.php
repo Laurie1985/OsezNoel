@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/assets/css/layout.css">
     <?php if (isset($cssFile)): ?>
         <link rel="stylesheet" href="/assets/css/<?php echo $cssFile ?>.css">
@@ -35,7 +36,7 @@
                             <a class="nav-link" href="/carpools">Qui sommes-nous ?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/carpools">Créer un calendrier</a>
+                            <a class="nav-link" href="/calendars/create">Créer un calendrier</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/contact">Nous contacter</a>
@@ -47,13 +48,13 @@
                                 <a href="/admin/dashboard" class="btn-fond-clair me-5">Tableau de bord</a>
                                 <form method="POST" action="/logout" class="d-inline">
                                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? '') ?>">
-                                    <button type="submit" class="btn-link">Déconnexion</button>
+                                    <button type="submit" class="btn-fond-clair me-5">Déconnexion</button>
                                 </form>
                             <?php else: ?>
                                 <a href="/dashboard" class="btn-fond-clair me-5">Mon compte</a>
                                 <form method="POST" action="/logout" class="d-inline">
                                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token ?? '') ?>">
-                                    <button type="submit" class="btn-link">Déconnexion</button>
+                                    <button type="submit" class="btn-fond-clair me-5">Déconnexion</button>
                                 </form>
                             <?php endif; ?>
                         <?php else: ?>
@@ -114,7 +115,7 @@
 
 
     <!-- MODAL MENTIONS LEGALES -->
-    <div class="modal fade" id="mentionsLegalesModal" tabindex="-1" aria-labelledby="mentionsLegalesModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mentionsLegalesModal" tabindex="-1" aria-labelledby="mentionsLegalesModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

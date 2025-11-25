@@ -23,7 +23,7 @@ function openSurpriseModal(day) {
     }
 
     // Afficher la modal
-    document.getElementById('surpriseModal').style.display = 'block';
+    document.getElementById('surpriseModal').style.display = 'flex';
 }
 
 /**
@@ -53,14 +53,9 @@ function saveSurprise() {
         content: content
     };
 
-    // Afficher le badge ✏️
-    document.getElementById('badge-' + currentDay).style.display = 'inline';
-
-    // Afficher l'icône dans l'aperçu
-    const editCase = document.querySelector(`.edit-case[data-day="${currentDay}"] .edit-icon`);
-    if (editCase) {
-        editCase.style.display = 'inline';
-    }
+    // Marquer la case comme remplie
+    const caseBtn = document.querySelector(`.case-btn[data-day="${currentDay}"]`);
+    caseBtn.classList.add('filled');
 
     // Fermer la modal
     closeSurpriseModal();
@@ -95,15 +90,49 @@ document.getElementById('calendarForm').addEventListener('submit', function (e) 
     }
 });
 
+// Mettre à jour le titre de l'aperçu en temps réel
+document.getElementById('title')?.addEventListener('input', function (e) {
+    document.getElementById('calendarTitle').textContent = e.target.value || 'Joyeux noël !';
+});
+
 /**
  * Changer l'aperçu du calendrier selon le thème sélectionné
  */
 document.querySelectorAll('input[name="theme_id"]').forEach(radio => {
     radio.addEventListener('change', function () {
         const imagePath = this.dataset.image;
-        const preview = document.getElementById('calendarPreview');
-        preview.style.backgroundImage = `url('/assets/images/themes/${imagePath}')`;
+        const calendarEdit = document.getElementById('calendarEdit');
+        calendarEdit.style.backgroundImage = `url('${imagePath}')`;
+        calendarEdit.style.backgroundSize = 'cover';
+        calendarEdit.style.backgroundPosition = 'center';
+
+        // Appliquer aussi sur les previews de la section 3
+        document.querySelectorAll('.calendar-preview').forEach(preview => {
+            preview.style.backgroundImage = `url('${imagePath}')`;
+        });
     });
+}); // ← Fermé ici
+
+/**
+ * Changer le style des cases de l'aperçu selon le choix
+ */
+document.querySelectorAll('input[name="case_style"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+        const selectedStyle = this.value;
+        const calendarEdit = document.getElementById('calendarEdit');
+
+        // Retirer tous les styles
+        calendarEdit.classList.remove('style1', 'style2');
+
+        // Appliquer le style choisi
+        calendarEdit.classList.add(selectedStyle);
+    });
+});
+
+// Initialiser avec le style par défaut (style1)
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEdit = document.getElementById('calendarEdit');
+    calendarEdit.classList.add('style1');
 });
 
 // Fermer la modal en cliquant en dehors
