@@ -9,8 +9,9 @@ class HomeController extends BaseController
     public function index(): void
     {
         $this->render('home/index', [
-            'title'   => 'Osez Noël - Accueil',
-            'cssFile' => 'home',
+            'title'      => 'Osez Noël - Accueil',
+            'cssFile'    => 'home',
+            'csrf_token' => $this->generateCsrfToken(),
         ]);
     }
 

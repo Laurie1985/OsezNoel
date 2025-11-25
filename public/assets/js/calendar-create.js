@@ -106,12 +106,11 @@ document.querySelectorAll('input[name="theme_id"]').forEach(radio => {
         calendarEdit.style.backgroundSize = 'cover';
         calendarEdit.style.backgroundPosition = 'center';
 
-        // Appliquer aussi sur les previews de la section 3
         document.querySelectorAll('.calendar-preview').forEach(preview => {
             preview.style.backgroundImage = `url('${imagePath}')`;
         });
     });
-}); // ← Fermé ici
+});
 
 /**
  * Changer le style des cases de l'aperçu selon le choix

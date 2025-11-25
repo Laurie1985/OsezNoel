@@ -210,9 +210,15 @@ class AuthController extends BaseController
     public function logout(): void
     {
 
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $this->flash('error', 'Requête invalide.');
+            $this->redirect('/');
+            return;
+        }
+
         // Vérifier le token CSRF
         if (! $this->requireCsrfToken()) {
-            $this->flash('error', 'Requête invalide.');
+            $this->flash('error', 'Token de sécurité invalide.');
             $this->redirect('/');
             return;
         }
