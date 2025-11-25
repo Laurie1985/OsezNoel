@@ -455,7 +455,6 @@ h2 {
 }
 
 /*Mobiles*/
-
 @media (max-width: 575px) {
     .contenu {
         padding: 1rem;

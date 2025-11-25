@@ -191,9 +191,9 @@ ul {
     padding-top: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .logo {
-        width: 50%;
+        width: 40%;
         margin-left: 1rem;
     }
 
@@ -212,5 +212,12 @@ ul {
 
     .footer-links {
         flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 575px) {
+    .logo {
+        width: 50%;
+        margin-left: 1rem;
     }
 }

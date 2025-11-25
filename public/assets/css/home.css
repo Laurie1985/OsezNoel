@@ -90,7 +90,11 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
+    .contenu {
+        max-width: 85%;
+    }
+
     .exemples {
         flex-direction: column;
         align-items: center;
@@ -99,6 +103,23 @@
     .bloc-cases1,
     .bloc-cases2,
     .bloc-cases3 {
-        max-width: 70%;
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 575px) {
+    .contenu {
+        max-width: 85%;
+    }
+
+    .exemples {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bloc-cases1,
+    .bloc-cases2,
+    .bloc-cases3 {
+        max-width: 80%;
     }
 }
