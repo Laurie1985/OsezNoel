@@ -36,7 +36,7 @@ class CalendarController extends BaseController
             'title'      => 'Osez Noël - Mes calendriers',
             'cssFile'    => 'calendar',
             'jsFile'     => 'calendar',
-            'calendars'  => $calendars, // ← Important !
+            'calendars'  => $calendars,
             'csrf_token' => $this->generateCsrfToken(),
         ]);
     }

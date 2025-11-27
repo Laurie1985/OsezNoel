@@ -22,16 +22,24 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 RUN a2enmod rewrite
 
 # Installer Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin --filename=composer
 
 # Définir le répertoire de travail
 WORKDIR /var/www/html
 
-# Création des répertoires de stockage et de logs avec les permissions appropriées
-RUN mkdir -p storage/logs public && chown -R www-data:www-data /var/www/html
+# Copier d'abord composer.json et composer.lock
+COPY composer.json composer.lock ./
+
+# Installer les dépendances
+RUN composer install --no-dev --optimize-autoloader
 
 # Copier le reste de l'application
 COPY . .
+
+# Création des répertoires de stockage et de logs avec les permissions appropriées
+RUN mkdir -p storage/logs public && chown -R www-data:www-data /var/www/html
+
 
 # Changer les permissions des fichiers pour Apache
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html

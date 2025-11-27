@@ -23,7 +23,7 @@ class Statistics extends BaseModel
             if ($e->getCode() === '23000') {
                 return false; // Déjà ouverte
             }
-            throw $e; // Autre erreur
+            throw $e;
         }
     }
 
